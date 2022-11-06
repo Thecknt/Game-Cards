@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Game Card</title>
+  </head>
+  <body>
+    <div class="App">
+      <main>
+        <section class="section Home" id="Home">
+          <header>
+            <h1>Proba tu suerte</h1>
+            <p>Nada de adivinar, aca te decimos como va a venir tu semana</p>
+          </header>
+          <form action="#" id="Form">
+            <label for="Player1">
+              <span>Nombre del Jugador 1</span>
+              <input type="text" id="Player1" placeholder="Ingresa tu Nombre" />
+            </label>
+            <label for="Player2">
+              <span>Nombre del Jugador 2</span>
+              <input type="text" id="Player2" placeholder="Ingresa tu Nombre" />
+            </label>
+
+            <button class="animate__heartBeat btn btn-primary" id="jugar">Jugar!</button>
+            <span class="error" id="error"></span>
+          </form>
+          <div class="partidasGuardadas display-none">
+            <h2>Partidas Guardadas</h2>
+            <ul>
+              <li>Partida de Prisci y Thomy</li>
+            </ul>
+          </div>
+        </section>
+        <section class="section Loading display-none" id="Loading">
+          <img src="images/Loading2.gif" class="carga" alt="Loading" />
+        </section>
+
+        <section class="section Carousel display-none" id="carousel">
+          <div class="container">
+            <div class="row">
+              <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner" id="carousel-inner">
+              
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+                <header>
+                  <h4 class="playerNames" id="contadorDeTexto"></h>
+                </header>
+              </div>
+            </div>
+
+    <!-- BOOTSTRAP MODAL -->
+<div>
+          <span> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+            Continuar
+          </button></span>
+    <div class="modal fade display-none" id="modal" tabindex="-1" 
+    aria-labelledby="resultadoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="d-grid">
+                  <button type="button" class="btn-c btn-lg mb-3" data-bs-dismiss="modal" id="resultados">Ver resultados</button>
+              </div>
+              <div class="d-grid">
+                  <button type="button" class="btn-c btn-lg" data-bs-dismiss="modal" id="volverAJugar">Jugar de Nuevo</button>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>  
+</div>      
+<!-- JavaScript Bundle with Popper -->
+        </section>
+        <!--Esto es nuevo-->
+        <section class="verResultados display-none" id="listaResultados">
+          <p id="resultadosText"></p>
+            <div class="resultadosInner" id="resultadosInner"></div>
+            <h1 id="matchText"></h1>
+                <div class="btns-holder">
+                <button class="btn btn-dark" id="btnGuardar">Guardar</button>
+                <button class="btn btn-dark" id="btnIsAlInicio">Jugar nuevamente</button>
+                <div class="match"></div>
+               </div>
+        </section>
+<!--Hasta aca-->
+  <div class="description display-none" id="description">
+    <h5>Partidas guardadas</h5>
+        <div class="juegos-guardados display-none" id="juegos-guardados">
+          <div class="lista1">
+            <ul><button type="button" class="btn btn-primary" id="verMas">Ver Mas</button>
+            </ul>
+            <div class="lista2">
+              <ul>                
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
