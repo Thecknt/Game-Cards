@@ -25,6 +25,10 @@ let match = false;
 let suma = 0
 let newCards = [];
 
+
+
+
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -36,7 +40,7 @@ form.addEventListener("submit", (e) => {
     let time = setTimeout(() => startGame(), 3000);
     loading.style.display = "block";
     home.style.display = "none"; 
-    lista1.style.display = "none"
+    // lista1.style.display = "none"
   } else {
     loading.style.display = "none";
     error.innerHTML = "Por favor completa ambos nombres";
@@ -46,7 +50,7 @@ form.addEventListener("submit", (e) => {
 const startGame = () => {
   carousel.style.display = "flex";
   while (newCards.length < 6) {
-    random = Math.floor(Math.random() * cards.length);
+    random = Math.floor(Math.random() * (22-1) + 1);
     if (newCards.indexOf(cards[random]) == -1) {
       newCards.push(cards[random]);
       loading.style.display = "none";
@@ -60,6 +64,8 @@ const startGame = () => {
 
 
   const iterarCartas = (cards) => {
+    
+    console.log(cards);
     cards.forEach((card, index) => {
       if (index === 0) active = "active";
       else active = "";
@@ -93,7 +99,7 @@ const startGame = () => {
       }
       console.log(suma)
     });
-
+    
     loading.style.display = "none";
 
     //localStorage.setItem('newCards', JSON.stringify(newCards));
@@ -110,9 +116,10 @@ const startGame = () => {
 
 resultados.addEventListener('click', ()=> {
   //let backDrop = document.querySelector('.modal-backdrop')
-  console.log(tempCards)
-  verResultados.classList.remove("display-none")
-  verResultados.classList.add("display-block")
+  if(verResultados.classList.contains("display-none")){
+    verResultados.classList.remove("display-none");
+    verResultados.classList.add("display-block");
+  }
   //modal.style.display ="none";
   carousel.style.display ="none";
  // backDrop.classList.remove('show')
@@ -146,17 +153,18 @@ modal.addEventListener('click', (e)=> {
 console.log(tempCards)
 
 volverAJugar.addEventListener('click', ()=> {
+
  // modal.style.display ="none";
   carousel.style.display ="none";
   home.style.display = "flex";
-  form.reset()
+  Form.reset();
   imagenes.innerHTML=''
-  newCards = ''
   resultadosText.innerHTML = ''
   tempCards = []
+
 })
 
-let lista1= document.querySelector('#lista1')
+// let lista1= document.querySelector('#lista1')
 
 guardarPartida.addEventListener('click', function(){
   let partidaAGuardar = [{player1: player1, player2: player2, match: true,
@@ -167,7 +175,7 @@ guardarPartida.addEventListener('click', function(){
   description.classList.remove("display-none");
   form.reset()
   home.style.display = "block";
-  verResultados.style.display = "none";
+  verResultados.classList.add('display-none');
   imagenes.innerHTML=''
   console.log(partidaAGuardar)
 
@@ -195,7 +203,7 @@ const partidasGuardadasList = () => {
 
 inicio.addEventListener('click', ()=>{
   home.style.display = "flex";
-  verResultados.style.display ="none";
+  verResultados.classList.add("display-none");
   //tempCards.innerHTML='';
   //newCards.innerHTML='';
   imagenes.innerHTML=''
